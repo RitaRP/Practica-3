@@ -1,0 +1,21 @@
+---
+title: "Practica-3"
+author: "Rita Rosas - Mayteelsoon Guerra"
+date: "2023-04-24"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r 1.1 Carga datos, echo = FALSE}
+library(readr)
+library(stringr)
+epa_http <- read_table("C:/Rita/DataScience/epa-http/epa-http.csv",col_names = FALSE)
+
+#Nombres de columnas
+names(epa_http) <- c("SourceName", "hora", "metodo", "recurso", "protocolo", "codigo_retorno", "tamano")
+head(epa_http)
+
+```
+
