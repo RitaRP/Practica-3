@@ -3,18 +3,21 @@ title: "Practica-3"
 author: "Rita Rosas - Mayteelsoon Guerra"
 output: html_document
 date: "2023-04-24"
-
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#Obtención de datos
+# Obtención de datos
 
-##Carga, formateo y limpieza de datos 
+## Carga, formateo y limpieza de datos 
 
-```{r 1.1 Carga datos, echo = FALSE, warning=FALSE}
+### Pregunta 1:
+### Descomprimir el fichero comprimido que contiene los registros del servidor, y a partir de los datos extraídos, cargar en data frame los registros con las peticiones servidas
+
+
+```{r 1.1 Carga datos, echo = TRUE, warning=FALSE}
 library(tidyr)
 library(dplyr)
 library(readr)
@@ -36,6 +39,9 @@ epa_http$tamano <- ifelse(is.na(epa_http$tamano), 0, epa_http$tamano)
 
 ## Exploración y Visualización de datos
 
+### Pregunta 2:
+### Identificar el número único de usuarios que han interactuado directamente con el servidor de forma segregada según si los usuarios han tenido algún tipo de error en las distintas peticiones ofrecidas por el servidor
+
 
 ```{r Exploración, echo=TRUE, warning=FALSE}
 
@@ -46,6 +52,15 @@ concurrencia <- as.data.frame(table(Tab_SourceName))
 Tab_Retorno <-table(epa_http$codigo_retorno)
 codigo_retorno_table <- data.frame(codigo_retorno = names(Tab_Retorno),
                                   Frecuencia = as.vector(Tab_Retorno))
+
+```
+
+### Pregunta 4:
+
+### Generar un gráfico que permita visualizar las respuestas del servidor, es decir, la distribución de peticiones según el código de respuesta de esta. Probad distintos tipos de gráficos (por lo menos 2 distintos e incluid estos en el documento RMarkdown)
+
+```{r Exploración2, echo=TRUE, warning=FALSE}
+
 
 #Grafica 1 -> Barras para codigo de retorno
 ggplot(codigo_retorno_table, aes(x = codigo_retorno, y = Frecuencia,  fill = codigo_retorno)) +
@@ -60,6 +75,11 @@ ggplot(codigo_retorno_table, aes(x = "", y = Frecuencia, fill = codigo_retorno))
 ```
 
 ## Clustering
+
+### Pregunta 5-6:
+
+### Utilizando un algoritmo de aprendizaje no supervisado, realizad un análisis de clústering con k-means para los datos del servidor.
+### Representad visualmente en gráficos de tipo scatter plot el resultado de vuestros clústering. 
 
 ```{r Clustering, echo=FALSE, warning=FALSE} 
 
